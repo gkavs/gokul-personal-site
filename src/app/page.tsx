@@ -52,7 +52,6 @@ export default function Home() {
             </nav>
 
             <div id="top" className="max-w-3xl">
-              <p className="eyebrow">Personal brand</p>
               <h1 className="mt-4 text-5xl font-black leading-[0.98] text-[#17202a] sm:text-6xl lg:text-7xl">
                 Hi, I&apos;m Gokul.
               </h1>
