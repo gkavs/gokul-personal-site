@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="The personal website of Gokul, featuring work, writing, and life outside of work."
+    />
+    <title>Gokul - Personal Brand</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f7f2ea;
+        --paper-soft: #fffaf2;
+        --ink: #17202a;
+        --muted: #4d5b68;
+        --accent: #be5a38;
+        --green: #eaf3ef;
+        --green-strong: #94b8a3;
+        --sun: #f2bf67;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        background: var(--paper);
+        color: #1f2933;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .hero-shell {
+        overflow: hidden;
+        background:
+          radial-gradient(
+            circle at 83% 18%,
+            rgba(248, 197, 112, 0.34),
+            transparent 28rem
+          ),
+          linear-gradient(135deg, #f7f2ea 0%, #fbf7ef 52%, #e4eee9 100%);
+      }
+
+      .hero-grid {
+        display: grid;
+        min-height: 100vh;
+        width: 100%;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 2rem 2.5rem;
+        align-content: center;
+        gap: 2.5rem;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .brand-mark {
+        display: grid;
+        min-width: 44px;
+        min-height: 44px;
+        place-items: center;
+        border: 1px solid rgba(23, 32, 42, 0.16);
+        border-radius: 999px;
+        background: var(--ink);
+        color: white;
+        font-weight: 900;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .nav-link {
+        color: var(--muted);
+      }
+
+      .nav-link:hover {
+        color: var(--ink);
+      }
+
+      .intro {
+        max-width: 48rem;
+      }
+
+      h1 {
+        margin: 1rem 0 0;
+        color: var(--ink);
+        font-size: clamp(3rem, 6vw, 4.5rem);
+        font-weight: 950;
+        line-height: 0.98;
+      }
+
+      .lede {
+        max-width: 42rem;
+        margin: 1.5rem 0 0;
+        color: #3a4652;
+        font-size: clamp(1.1rem, 2vw, 1.25rem);
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+
+      .primary-link,
+      .secondary-link,
+      .card-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        font-weight: 900;
+        transition: transform 160ms ease;
+      }
+
+      .primary-link,
+      .secondary-link {
+        min-height: 48px;
+        padding: 0 1.15rem;
+        font-size: 0.95rem;
+      }
+
+      .primary-link {
+        background: var(--ink);
+        color: white;
+        box-shadow: 0 14px 30px rgba(23, 32, 42, 0.18);
+      }
+
+      .secondary-link {
+        border: 1px solid rgba(23, 32, 42, 0.16);
+        background: rgba(255, 250, 242, 0.72);
+        color: var(--ink);
+      }
+
+      .primary-link:hover,
+      .secondary-link:hover,
+      .card-link:hover {
+        transform: translateY(-1px);
+      }
+
+      .focus-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-top: 3rem;
+      }
+
+      .focus-pill {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        border-left: 3px solid var(--accent);
+        background: rgba(255, 255, 255, 0.56);
+        padding: 1rem;
+        color: #26323f;
+        font-size: 0.94rem;
+        font-weight: 800;
+        line-height: 1.35;
+      }
+
+      .hero-art {
+        position: relative;
+        display: flex;
+        min-height: 680px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .portrait-panel {
+        position: relative;
+        isolation: isolate;
+        width: min(100%, 460px);
+        min-height: 520px;
+        overflow: hidden;
+        border: 1px solid rgba(23, 32, 42, 0.12);
+        border-radius: 8px;
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.24),
+            rgba(255, 255, 255, 0)
+          ),
+          #26323f;
+        box-shadow: 0 30px 80px rgba(23, 32, 42, 0.2);
+      }
+
+      .portrait-panel::before {
+        position: absolute;
+        inset: 32px 32px auto auto;
+        width: 168px;
+        height: 168px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        content: "";
+      }
+
+      .portrait-panel::after {
+        position: absolute;
+        inset: auto auto -70px -40px;
+        width: 260px;
+        height: 260px;
+        border-radius: 999px;
+        background: var(--green-strong);
+        content: "";
+        opacity: 0.8;
+      }
+
+      .portrait-sun {
+        position: absolute;
+        right: 62px;
+        top: 82px;
+        width: 124px;
+        height: 124px;
+        border-radius: 999px;
+        background: var(--sun);
+        box-shadow: 0 0 0 28px rgba(242, 191, 103, 0.14);
+      }
+
+      .portrait-card {
+        position: absolute;
+        left: 28px;
+        right: 28px;
+        bottom: 104px;
+        z-index: 2;
+        display: grid;
+        gap: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 8px;
+        background: rgba(255, 250, 242, 0.92);
+        padding: 24px;
+        backdrop-filter: blur(10px);
+      }
+
+      .portrait-avatar {
+        display: block;
+        width: 92px;
+        height: 92px;
+        overflow: hidden;
+        border: 3px solid white;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 12px 28px rgba(23, 32, 42, 0.18);
+      }
+
+      .portrait-avatar img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 28%;
+      }
+
+      .portrait-label {
+        margin: 0;
+        color: #5b6773;
+        font-size: 0.88rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .portrait-title {
+        margin: 0.5rem 0 0;
+        color: var(--ink);
+        font-size: 1.6rem;
+        font-weight: 950;
+        line-height: 1.2;
+      }
+
+      .portrait-note {
+        position: absolute;
+        right: 28px;
+        bottom: 28px;
+        left: 28px;
+        z-index: 2;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        padding-top: 18px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+
+      .content-band {
+        border-top: 1px solid rgba(23, 32, 42, 0.08);
+      }
+
+      .section-inner {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 5rem 2.5rem;
+      }
+
+      .links-band {
+        background: var(--paper-soft);
+      }
+
+      .outside-band {
+        background: var(--green);
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--accent);
+        font-size: 0.76rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        max-width: 44rem;
+        margin: 0.75rem 0 0;
+        color: var(--ink);
+        font-size: clamp(2rem, 4vw, 3.7rem);
+        font-weight: 950;
+        line-height: 1.02;
+      }
+
+      .link-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+        margin-top: 2.5rem;
+      }
+
+      .link-card {
+        min-height: 312px;
+        border: 1px solid rgba(23, 32, 42, 0.1);
+        border-radius: 8px;
+        background: white;
+        padding: 1.5rem;
+        box-shadow: 0 18px 45px rgba(23, 32, 42, 0.08);
+      }
+
+      .link-card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.25rem;
+      }
+
+      .link-kicker {
+        margin: 0;
+        color: var(--accent);
+        font-size: 0.88rem;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      .link-title {
+        margin: 0.75rem 0 0;
+        color: var(--ink);
+        font-size: 1.5rem;
+        font-weight: 950;
+      }
+
+      .link-arrow {
+        display: grid;
+        min-width: 44px;
+        min-height: 44px;
+        place-items: center;
+        border-radius: 999px;
+        background: var(--green);
+        color: var(--ink);
+        font-weight: 900;
+      }
+
+      .link-card p:last-of-type {
+        margin: 1.25rem 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .card-link {
+        min-height: 44px;
+        margin-top: 2rem;
+        padding: 0 1rem;
+        background: var(--ink);
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      .outside-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1fr;
+        gap: 2.5rem;
+      }
+
+      .outside-list {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .outside-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        border-top: 1px solid rgba(23, 32, 42, 0.14);
+        padding: 1.35rem 0;
+        color: #26323f;
+        font-size: 1.08rem;
+        font-weight: 700;
+        line-height: 1.65;
+      }
+
+      .outside-row p {
+        margin: 0;
+      }
+
+      .outside-number {
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-weight: 950;
+      }
+
+      .footer {
+        background: var(--ink);
+        color: white;
+      }
+
+      .footer-inner {
+        display: flex;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 2.5rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .footer p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .footer a {
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 950;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .outside-grid,
+        .link-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-art {
+          min-height: 430px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-grid,
+        .section-inner,
+        .footer-inner {
+          padding-right: 1.25rem;
+          padding-left: 1.25rem;
+        }
+
+        .nav {
+          margin-bottom: 2.5rem;
+        }
+
+        .focus-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .portrait-panel {
+          min-height: 410px;
+        }
+
+        .portrait-card {
+          right: 18px;
+          bottom: 92px;
+          left: 18px;
+          padding: 20px;
+        }
+
+        .portrait-note {
+          right: 18px;
+          left: 18px;
+        }
+
+        .link-card {
+          min-height: auto;
+        }
+
+        .outside-row {
+          grid-template-columns: 1fr;
+          gap: 0.35rem;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero-shell">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <nav class="nav" aria-label="Primary navigation">
+              <a class="brand-mark" href="#top" aria-label="Home">GK</a>
+              <div class="nav-links">
+                <a class="nav-link" href="#links">Links</a>
+                <a class="nav-link" href="#outside-work">Outside work</a>
+              </div>
+            </nav>
+
+            <div id="top" class="intro">
+              <h1>Hi, I&apos;m Gokul.</h1>
+              <p class="lede">
+                I build, learn, and write at the intersection of thoughtful
+                technology and practical execution. I like turning unclear
+                problems into useful systems, clear stories, and momentum people
+                can feel.
+              </p>
+            </div>
+
+            <div class="actions">
+              <a class="primary-link" href="#links">Explore my work</a>
+              <a
+                class="secondary-link"
+                href="mailto:gokul.kavaturi@hotmail.com"
+              >
+                Get in touch
+              </a>
+            </div>
+
+            <div class="focus-grid">
+              <div class="focus-pill">Building useful products</div>
+              <div class="focus-pill">Turning ambiguity into plans</div>
+              <div class="focus-pill">Learning quickly and sharing clearly</div>
+            </div>
+          </div>
+
+          <aside class="hero-art" aria-label="Current focus">
+            <div class="portrait-panel">
+              <div class="portrait-sun"></div>
+              <div class="portrait-card">
+                <div class="portrait-avatar">
+                  <img
+                    alt="Gokul Kavaturi"
+                    src="public/IMG_9971.JPG?v=5"
+                  />
+                </div>
+                <div>
+                  <p class="portrait-label">Current focus</p>
+                  <p class="portrait-title">
+                    Products, writing, and thoughtful growth.
+                  </p>
+                </div>
+              </div>
+              <div class="portrait-note">
+                <span>Open to meaningful conversations</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="links" class="content-band links-band">
+        <div class="section-inner">
+          <p class="eyebrow">Where to find me</p>
+          <h2 class="section-title">Follow the work and the thinking.</h2>
+
+          <div class="link-grid">
+            <article class="link-card">
+              <div class="link-card-header">
+                <div>
+                  <p class="link-kicker">LinkedIn</p>
+                  <h3 class="link-title">Professional updates</h3>
+                </div>
+                <span class="link-arrow" aria-hidden="true">-&gt;</span>
+              </div>
+              <p>
+                Connect with me for my work history, current projects, and the
+                problems I am thinking through with teams and peers.
+              </p>
+              <a
+                class="card-link"
+                href="https://www.linkedin.com/in/gokulkavaturi/"
+              >
+                View LinkedIn
+              </a>
+            </article>
+
+            <article class="link-card">
+              <div class="link-card-header">
+                <div>
+                  <p class="link-kicker">Medium</p>
+                  <h3 class="link-title">Writing and notes</h3>
+                </div>
+                <span class="link-arrow" aria-hidden="true">-&gt;</span>
+              </div>
+              <p>
+                Read my essays, field notes, and practical reflections on
+                building products, learning in public, and working with clarity.
+              </p>
+              <a class="card-link" href="https://medium.com/@gokulkavaturi">
+                Read Medium
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="outside-work" class="content-band outside-band">
+        <div class="section-inner outside-grid">
+          <div>
+            <p class="eyebrow">Outside work</p>
+            <h2 class="section-title">
+              The parts of life that keep the work honest.
+            </h2>
+          </div>
+
+          <div class="outside-list">
+            <article class="outside-row">
+              <span class="outside-number">01</span>
+              <p>
+                Exploring new places, food, and conversations that widen my
+                point of view.
+              </p>
+            </article>
+            <article class="outside-row">
+              <span class="outside-number">02</span>
+              <p>
+                Reading, writing, and collecting ideas that help me connect
+                technology with real human needs.
+              </p>
+            </article>
+            <article class="outside-row">
+              <span class="outside-number">03</span>
+              <p>
+                Staying active, trying creative side projects, and making time
+                for people who matter.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <p>
+            Built as a home base for work, writing, and life outside the inbox.
+          </p>
+          <a href="#top">Back to top</a>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
